@@ -19,17 +19,14 @@ class FocusTrackApp extends StatelessWidget {
           seedColor: const Color(0xFF1A237E), // Azul Índigo Universitario
           brightness: Brightness.light,
         ),
-        appBarTheme: const AppBarTheme(
-          centerTitle: true,
-          elevation: 2,
-        ),
+        appBarTheme: const AppBarTheme(centerTitle: true, elevation: 2),
       ),
       home: const PantallaPrincipalMetas(),
     );
   }
 }
 
-/// Niveles de prioridad de la sesion (Reto 1)
+///niveles de prioridad de la sesion
 enum NivelPrioridad {
   baja('Baja', Color(0xFF607D8B), Icons.arrow_downward),
   media('Media', Color(0xFFFF8F00), Icons.drag_handle),
@@ -47,12 +44,11 @@ class PantallaPrincipalMetas extends StatefulWidget {
   const PantallaPrincipalMetas({super.key});
 
   @override
-  State<PantallaPrincipalMetas> createState() =>
-      _PantallaPrincipalMetasState();
+  State<PantallaPrincipalMetas> createState() => _PantallaPrincipalMetasState();
 }
 
 class _PantallaPrincipalMetasState extends State<PantallaPrincipalMetas> {
-  /// Limite maximo de metas diarias permitido (Reto 2)
+  ///limite maximo de metas diarias permitido
   static const int _limiteMaximoMetas = 10;
 
   int _metasCompletadas = 0;
@@ -74,7 +70,7 @@ class _PantallaPrincipalMetasState extends State<PantallaPrincipalMetas> {
   }
 
   void _incrementarMeta() {
-    // Bloqueo seguro: no se permite superar el limite diario
+    //bloqueo seguro: no se permite superar el limite diario
     if (_metasCompletadas >= _limiteMaximoMetas) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
@@ -240,7 +236,7 @@ class _PantallaPrincipalMetasState extends State<PantallaPrincipalMetas> {
               ),
               const SizedBox(height: 24.0),
 
-              // Selector de Estado de Prioridad (Reto 1)
+              //selector de estado de prioridad de la sesion
               Text(
                 'Prioridad de la sesión',
                 style: tema.textTheme.titleSmall?.copyWith(
@@ -260,8 +256,9 @@ class _PantallaPrincipalMetasState extends State<PantallaPrincipalMetas> {
                 selected: {_prioridad},
                 onSelectionChanged: _cambiarPrioridad,
                 style: SegmentedButton.styleFrom(
-                  selectedBackgroundColor:
-                      _prioridad.color.withValues(alpha: 0.18),
+                  selectedBackgroundColor: _prioridad.color.withValues(
+                    alpha: 0.18,
+                  ),
                   selectedForegroundColor: _prioridad.color,
                 ),
               ),
@@ -272,10 +269,7 @@ class _PantallaPrincipalMetasState extends State<PantallaPrincipalMetas> {
                 elevation: 1.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.0),
-                  side: BorderSide(
-                    color: _prioridad.color,
-                    width: 1.5,
-                  ),
+                  side: BorderSide(color: _prioridad.color, width: 1.5),
                 ),
                 child: ListTile(
                   leading: Icon(Icons.info_outline, color: _prioridad.color),
